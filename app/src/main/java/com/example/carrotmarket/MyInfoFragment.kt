@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.fragment_my_info.*
 
+const val TAG: String = "[MyInfoFragment]"
+
 class MyInfoFragment : Fragment() {
-    private var TAG: String = "[MyInfoFragment]"
-    private lateinit var setLocateButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,11 +21,12 @@ class MyInfoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_my_info, container, false)
-        setLocateButton = view.findViewById(R.id.btn_setLocate)
+
+        val setLocateButton = view.findViewById<Button>(R.id.btn_setLocate)
+
         setLocateButton.setOnClickListener {
             val intent: Intent = Intent(context, SetMyLocateActivity::class.java)
             startActivity(intent)
-            Log.d(TAG, "onCreateView: Clicked")
         }
         return view
     }

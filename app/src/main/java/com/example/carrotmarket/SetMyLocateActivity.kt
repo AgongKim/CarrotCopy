@@ -7,21 +7,18 @@ import android.widget.Button
 import android.widget.LinearLayout
 
 class SetMyLocateActivity : AppCompatActivity() {
-    private lateinit var addLocateButton1: Button
-    private lateinit var addLocateButton2: Button
-    private lateinit var backButton: Button
-    private lateinit var locateLayout: LinearLayout
-    private lateinit var locateDetailLayout: LinearLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_my_locate)
-        addLocateButton1 = findViewById(R.id.addLocateButton1)
-        addLocateButton2 = findViewById(R.id.addLocateButton2)
-        backButton = findViewById(R.id.backButton)
+        val addLocateButton1 = findViewById<Button>(R.id.addLocateButton1)
+        val addLocateButton2 = findViewById<Button>(R.id.addLocateButton2)
+        val backButton = findViewById<Button>(R.id.backButton)
+        val setLocate = findViewById<Button>(R.id.setLocateButton)
 
-        locateLayout = findViewById(R.id.locate)
-        locateDetailLayout = findViewById(R.id.lcoate_detail)
+        val locateLayout = findViewById<LinearLayout>(R.id.locate)
+        val locateDetailLayout = findViewById<LinearLayout>(R.id.lcoate_detail)
 
         // 초기 셋팅
         locateLayout.visibility = View.VISIBLE
@@ -42,6 +39,9 @@ class SetMyLocateActivity : AppCompatActivity() {
             locateDetailLayout.visibility = View.GONE
         }
 
+        setLocate.setOnClickListener {
+
+        }
 
 
 
