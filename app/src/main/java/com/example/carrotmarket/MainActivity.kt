@@ -7,7 +7,8 @@ import androidx.fragment.app.FragmentManager
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

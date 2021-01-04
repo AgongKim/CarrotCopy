@@ -39,8 +39,8 @@ class RecyclerAdapterHome(private val items: List<Items>):
             view.txtAddr.text = item.addr
             view.txtTime.text = item.time
             view.txtPrice.text = item.price.toString() + "원"
-            view.txtLikes.text = if(item.likes==null) "0" else item.likes.toString()
-            view.txtChats.text = if(item.chats==null) "0" else item.chats.toString()
+            if(item.likes==null) view.txtLikes.visibility = View.GONE else view.txtLikes.text = "좋 : "+item.likes.toString()
+            if(item.chats==null) view.txtChats.visibility=View.GONE else view.txtChats.text="챗 : "+item.chats.toString()
             view.imageView.setImageResource(item.itemPic)
         }
     }
