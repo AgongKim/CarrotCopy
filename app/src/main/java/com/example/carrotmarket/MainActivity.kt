@@ -22,6 +22,9 @@ MainActivity : AppCompatActivity() {
         btnChat.setOnClickListener(View.OnClickListener {
             setFrag(2)
         })
+        btnMypage.setOnClickListener(View.OnClickListener {
+            setFrag(4)
+        })
     }
 
     fun setFrag(n:Int){
@@ -33,6 +36,11 @@ MainActivity : AppCompatActivity() {
         }else if(n==2){
             val tran = supportFragmentManager.beginTransaction()
             tran.replace(R.id.fragment,ChatFragment())
+            tran.addToBackStack(null)
+            tran.commit()
+        }else if(n==4){
+            val tran = supportFragmentManager.beginTransaction()
+            tran.replace(R.id.fragment,MyInfoFragment())
             tran.addToBackStack(null)
             tran.commit()
         }
