@@ -4,17 +4,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carrotmarket.ItemsHome
+import com.example.carrotmarket.ItemsChat
 import com.example.carrotmarket.R
+import kotlinx.android.synthetic.main.chat_items.view.*
 import kotlinx.android.synthetic.main.home_items.view.*
+import kotlinx.android.synthetic.main.home_items.view.imgProfile
+import kotlinx.android.synthetic.main.home_items.view.txtAddr
+import kotlinx.android.synthetic.main.home_items.view.txtId
+import kotlinx.android.synthetic.main.home_items.view.txtTime
 
-class RecyclerAdapterHome(private val items: List<ItemsHome>):
-    RecyclerView.Adapter<RecyclerAdapterHome.ItemViewHolder>(){
+class RecyclerAdapterChat(private val items: List<ItemsChat>):
+    RecyclerView.Adapter<RecyclerAdapterChat.ItemViewHolder>(){
 
     //뷰홀더 설정
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         //인플레이터로 뷰 생성
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.home_items,parent,false)
+        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.chat_items,parent,false)
         //생성된 뷰에 값을 넣어주기 위해 뷰홀더 콜
         return ItemViewHolder(inflatedView)
     }
@@ -32,14 +37,15 @@ class RecyclerAdapterHome(private val items: List<ItemsHome>):
     }
 
     class ItemViewHolder(v: View): RecyclerView.ViewHolder(v) {
-        var view :View = v
+        private var view :View = v
 
-        fun bind(item : ItemsHome){
-            view.txtId.text = item.title
+        fun bind(item : ItemsChat){
+            view.txtId.text = item.id
             view.txtAddr.text = item.addr
             view.txtTime.text = item.time
-            view.txtPrice.text = item.price.toString() + "원"
-            view.imgProfile.setImageResource(item.itemPic)
+            view.txtLastChat.text = item.lastChat
+            if(item.profilePic==null) view.imgProfile.setImageResource(R.drawable.profile) else view.imgProfile.setImageResource(item.profilePic)
+            view.imgItem.setImageResource(item.itemPic)
         }
     }
 
