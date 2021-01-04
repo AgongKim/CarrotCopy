@@ -11,10 +11,10 @@ import com.example.carrotmarket.adapter.RecyclerAdapterHome
 
 class HomeFragment : Fragment() {
     //동네 == ㅁㅁ동 해서 해당되는 동의 아이템들만 검색 (HTTP통신)
-    val itemsList : List<Items> = listOf(
-        Items(R.drawable.test,"테스트","병점동","01-04",999999,4,2),
-        Items(R.drawable.test2,"씹존예","병점동","01-04",999999,null,null),
-        Items(R.drawable.test3,"틀니팝니다","동동동","01-05",20000,null,null)
+    val itemsList : List<ItemsHome> = listOf(
+        ItemsHome(R.drawable.test,"테스트","병점동","01-04",999999,4,2),
+        ItemsHome(R.drawable.test2,"씹존예","병점동","01-04",999999,null,null),
+        ItemsHome(R.drawable.test3,"틀니팝니다","동동동","01-05",20000,null,null)
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,5 +28,5 @@ class HomeFragment : Fragment() {
     }
 }
 
-class Items(val itemPic:Int, val title:String, val addr:String, val time:String, val price:Int,
+class ItemsHome(val itemPic:Int, val title:String, val addr:String, val time:String, val price:Int,
             val likes:Int?,val chats:Int?)
