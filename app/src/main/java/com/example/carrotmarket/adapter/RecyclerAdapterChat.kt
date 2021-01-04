@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.ItemsChat
 import com.example.carrotmarket.R
 import kotlinx.android.synthetic.main.chat_items.view.*
-import kotlinx.android.synthetic.main.home_items.view.*
 import kotlinx.android.synthetic.main.home_items.view.imgProfile
 import kotlinx.android.synthetic.main.home_items.view.txtAddr
-import kotlinx.android.synthetic.main.home_items.view.txtId
+import kotlinx.android.synthetic.main.home_items.view.txtTitle
 import kotlinx.android.synthetic.main.home_items.view.txtTime
 
 class RecyclerAdapterChat(private val items: List<ItemsChat>):
