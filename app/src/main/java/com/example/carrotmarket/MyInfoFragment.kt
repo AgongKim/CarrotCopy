@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.fragment_my_info.*
 
-const val TAG: String = "[MyInfoFragment]"
+
 
 class MyInfoFragment : Fragment() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
