@@ -8,37 +8,41 @@ import androidx.fragment.app.FragmentManager
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
 import kotlinx.android.synthetic.main.activity_main.*
 
-class
-MainActivity : AppCompatActivity() {
+var position = 1
+
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setFrag(1)
+        setFrag()
 
         btnHome.setOnClickListener(View.OnClickListener {
-            setFrag(1)
+            position = 1
+            setFrag()
         })
         btnChat.setOnClickListener(View.OnClickListener {
-            setFrag(2)
+            position = 3
+            setFrag()
         })
         btnMypage.setOnClickListener(View.OnClickListener {
-            setFrag(4)
+            position = 4
+            setFrag()
         })
     }
 
-    fun setFrag(n:Int){
-        if(n==1){
+    fun setFrag(){
+        if(position==1){
             val tran = supportFragmentManager.beginTransaction()
             tran.replace(R.id.fragment,HomeFragment())
             tran.addToBackStack(null)
             tran.commit()
-        }else if(n==2){
+        }else if(position==3){
             val tran = supportFragmentManager.beginTransaction()
             tran.replace(R.id.fragment,ChatFragment())
             tran.addToBackStack(null)
             tran.commit()
-        }else if(n==4){
+        }else if(position==4){
             val tran = supportFragmentManager.beginTransaction()
             tran.replace(R.id.fragment,MyInfoFragment())
             tran.addToBackStack(null)
