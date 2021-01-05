@@ -14,21 +14,26 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.text.set
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
 import java.util.*
+import kotlin.collections.HashSet
+import kotlin.math.round
 
 const val PERMISSION_REQUEST_LOCATION = 0
 
 class SetMyLocateActivity : AppCompatActivity() {
     private val TAG: String = "[SetMyLocateActivity]"
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var geocoder: Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,7 @@ class SetMyLocateActivity : AppCompatActivity() {
         // 초기 셋팅
         locateLayout.visibility = View.VISIBLE
         locateDetailLayout.visibility = View.GONE
+        findViewById<EditText>(R.id.rangeEditText).setText("1")
 
         // 버튼 설정
         addLocateButton1.setOnClickListener {
@@ -76,13 +82,47 @@ class SetMyLocateActivity : AppCompatActivity() {
         }
         Log.d(TAG, "getLocation: 실행")
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        geocoder = Geocoder(this, Locale.KOREAN)
         fusedLocationClient.lastLocation
                 .addOnSuccessListener { location : Location? ->
                     if (location != null) {
-                        Log.d(TAG, "getLocation: ${location.longitude}")
-                        Log.d(TAG, "getLocation: ${location.latitude}")
+                        // 소수점 세자리 이하는 오차 범위 100m 이내로 동이름 가져오는데에 무리 없으므로 자름
+                        val range = findViewById<EditText>(R.id.rangeEditText).text.toString().toIntOrNull()
+
+                        when (range) {
+                            1 -> {
+                                getLocationInRange(0, location)
+                            }
+                            2 -> {
+                                getLocationInRange(1, location)
+                            }
+                            3 -> {
+                                getLocationInRange(2, location)
+                            }
+                            4 -> {
+                                getLocationInRange(3, location)
+                            }
+                        }
                     }
                 }
+    }
+
+    private fun getLocationInRange(range: Int, location: Location){
+        val length = 0.006
+        val latitude: Double = round(location.latitude*1000)/1000
+        val longitude: Double = round(location.longitude*1000)/1000
+        var address: TreeSet<String> = sortedSetOf()
+        var list: List<Address>
+        for(i in -range..range){
+            for(k in -range..range){
+                list = geocoder.getFromLocation(latitude+i*length, longitude+k*length, 1)
+                if(list.isNotEmpty()){
+                    address.add(list[0].thoroughfare)
+                }
+            }
+        }
+        Log.e(TAG, "getLocation: ${address}")
+        address.clear()
     }
 
 

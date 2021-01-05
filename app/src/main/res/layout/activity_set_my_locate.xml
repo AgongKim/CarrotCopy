@@ -170,6 +170,13 @@
                     android:text="대충 검색창" />
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/rangeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
             <Button
                 android:id="@+id/setLocateButton"
                 android:layout_width="match_parent"
