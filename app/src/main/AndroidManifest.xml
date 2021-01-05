@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CarrotMarket">
-        <activity android:name=".ChatActivity">
+        <activity android:name=".ChatActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SetMyLocateActivity" />
-        </activity>
     </application>
 
 </manifest>
