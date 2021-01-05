@@ -24,26 +24,25 @@ class SetMyLocateActivity : AppCompatActivity() {
         locateLayout.visibility = View.VISIBLE
         locateDetailLayout.visibility = View.GONE
 
+        // 버튼 설정
         addLocateButton1.setOnClickListener {
             locateLayout.visibility = View.GONE
             locateDetailLayout.visibility = View.VISIBLE
         }
-
         addLocateButton2.setOnClickListener {
             locateLayout.visibility = View.GONE
             locateDetailLayout.visibility = View.VISIBLE
         }
-
         backButton.setOnClickListener {
             locateLayout.visibility = View.VISIBLE
             locateDetailLayout.visibility = View.GONE
         }
 
+        // 위치 정보 가져오기
         setLocate.setOnClickListener {
-
+            
         }
 
-
-
     }
+
 }
