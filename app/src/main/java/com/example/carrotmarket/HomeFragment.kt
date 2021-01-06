@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
 
-class HomeFragment : Fragment() {
+class HomeFragment(var CHK_LOGIN:Boolean) : Fragment() {
     //동네 == ㅁㅁ동 해서 해당되는 동의 아이템들만 검색 (HTTP통신)
     val itemsList : List<ItemsHome> = listOf(
         ItemsHome(R.drawable.test,"테스트","병점동","01-04",999999,4,2),

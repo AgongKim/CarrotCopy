@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.adapter.RecyclerAdapterChat
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
 
-class ChatFragment:Fragment(){
+class ChatFragment(var CHK_LOGIN:Boolean):Fragment(){
+
     val itemsList : List<ItemsChat> = listOf(
         ItemsChat(null,"당근맨1","병점동","01-04","차빼이개새기야",R.drawable.test3),
         ItemsChat(null,"당근맨2","병점동","01-04","짜라란 짜라란 짜라란",R.drawable.test3),
