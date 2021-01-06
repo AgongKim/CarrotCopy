@@ -1,5 +1,6 @@
 package com.example.carrotmarket
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.adapter.RecyclerAdapterChat
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
 
-class ChatFragment(var CHK_LOGIN:Boolean):Fragment(){
+class ChatFragment():Fragment(){
 
     val itemsList : List<ItemsChat> = listOf(
         ItemsChat(null,"당근맨1","병점동","01-04","차빼이개새기야",R.drawable.test3),
@@ -19,6 +20,10 @@ class ChatFragment(var CHK_LOGIN:Boolean):Fragment(){
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        var member = this.activity?.getSharedPreferences("member", Activity.MODE_PRIVATE)
+        var CHK_LOGIN = member?.getBoolean("CHK_LOGIN",false)
+
         val view = inflater.inflate(R.layout.fragment_home,container,false)
         val adapter = RecyclerAdapterChat(itemsList)
         val recycler: RecyclerView = view.findViewById(R.id.verticalList)

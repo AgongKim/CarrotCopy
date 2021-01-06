@@ -1,6 +1,8 @@
 package com.example.carrotmarket
 
+import android.app.Activity
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,25 +18,29 @@ import kotlinx.android.synthetic.main.login_popup.view.*
 
 class MainActivity() : AppCompatActivity() {
     var position = 1
-    var CHK_LOGIN =false
+    var CHK_LOGIN = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(false){
-            //여기에 자동로그인 구현하기
-        }else{
-            CHK_LOGIN =false
-        }
+        //자동로그인 & 로그인된 회원정보 공유용 쉐어드 프리퍼런스
+        val member:SharedPreferences = getSharedPreferences("member",Activity.MODE_PRIVATE)
+        CHK_LOGIN = member.getBoolean("CHK_LOGIN",false)
+
+        //로그인 한적이있으면 멤버정보 저장
+        if(CHK_LOGIN){
+            //여기에 맴버정보 저장
+
+       }
 
         setFrag()
 
-        btnHome.setOnClickListener(View.OnClickListener {
+        btnHome.setOnClickListener {
             position = 1
             setFrag()
-        })
-        btnChat.setOnClickListener(View.OnClickListener {
+        }
+        btnChat.setOnClickListener {
             if(CHK_LOGIN==true){
                 position = 3
                 setFrag()
@@ -42,27 +48,52 @@ class MainActivity() : AppCompatActivity() {
                 //로그인 안되어있으면 채팅 x 창띄우기
                 showLoginPopup()
             }
-        })
-        btnMypage.setOnClickListener(View.OnClickListener {
-            position = 4
+        }
+        btnMypage.run {
+            CHK_LOGIN = member.getBoolean("CHK_LOGIN",false)
+
+            //로그인 한적이있으면 멤버정보 저장
+            if(CHK_LOGIN){
+                //여기에 맴버정보 저장
+
+           }
+
             setFrag()
-        })
+
+            btnHome.setOnClickListener {
+                position = 1
+                setFrag()
+            }
+            btnChat.setOnClickListener {
+                if(CHK_LOGIN==true){
+                    position = 3
+                    setFrag()
+                }else{
+                    //로그인 안되어있으면 채팅 x 창띄우기
+                    showLoginPopup()
+                }
+            }
+            btnMypage.setOnClickListener {
+                position = 4
+                setFrag()
+            }
+        }
     }
 
     fun setFrag(){
         if(position==1){
             val tran = supportFragmentManager.beginTransaction()
-            tran.replace(R.id.fragment,HomeFragment(CHK_LOGIN))
+            tran.replace(R.id.fragment,HomeFragment())
             tran.addToBackStack(null)
             tran.commit()
         }else if(position==3){
             val tran = supportFragmentManager.beginTransaction()
-            tran.replace(R.id.fragment,ChatFragment(CHK_LOGIN))
+            tran.replace(R.id.fragment,ChatFragment())
             tran.addToBackStack(null)
             tran.commit()
         }else if(position==4){
             val tran = supportFragmentManager.beginTransaction()
-            tran.replace(R.id.fragment,MyInfoFragment(CHK_LOGIN))
+            tran.replace(R.id.fragment,MyInfoFragment())
             tran.addToBackStack(null)
             tran.commit()
         }

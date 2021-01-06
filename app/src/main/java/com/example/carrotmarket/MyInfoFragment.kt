@@ -1,5 +1,6 @@
 package com.example.carrotmarket
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.nfc.Tag
@@ -12,12 +13,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.firebase.database.core.Context
 import kotlinx.android.synthetic.main.fragment_my_info.*
 import kotlinx.android.synthetic.main.fragment_my_info.view.*
 import kotlinx.android.synthetic.main.msg_items.view.*
 
 
-class MyInfoFragment(var CHK_LOGIN:Boolean) : Fragment() {
+class MyInfoFragment() : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +28,9 @@ class MyInfoFragment(var CHK_LOGIN:Boolean) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_my_info, container, false)
+
+        var member = this.activity?.getSharedPreferences("member", Activity.MODE_PRIVATE)
+        var CHK_LOGIN = member?.getBoolean("CHK_LOGIN",false)
 
         //기본프사설정
         if(CHK_LOGIN==false){
