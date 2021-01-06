@@ -33,9 +33,8 @@ class ChatActivity : AppCompatActivity() {
     private val chatroom = "-MQG3T4XgvTj5Gt7F42B"
     private val database = Firebase.database
     private val myRef = database.getReference("Messages")
-
     lateinit var adapter: RecyclerAdapterMsg
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -113,6 +112,4 @@ class ChatActivity : AppCompatActivity() {
         var dateFormat = SimpleDateFormat("yyyyMMddHHmm", Locale.KOREA).format(currentDateTime)
         return dateFormat
     }
-
-
 }
