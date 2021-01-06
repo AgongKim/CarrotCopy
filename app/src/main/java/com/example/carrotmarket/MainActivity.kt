@@ -3,9 +3,7 @@ package com.example.carrotmarket
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
-import androidx.fragment.app.FragmentManager
-import com.example.carrotmarket.adapter.RecyclerAdapterHome
+import com.example.carrotmarket.myInfo.MyInfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 var position = 1
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             tran.commit()
         }else if(position==4){
             val tran = supportFragmentManager.beginTransaction()
-            tran.replace(R.id.fragment,MyInfoFragment())
+            tran.replace(R.id.fragment, MyInfoFragment())
             tran.addToBackStack(null)
             tran.commit()
         }
