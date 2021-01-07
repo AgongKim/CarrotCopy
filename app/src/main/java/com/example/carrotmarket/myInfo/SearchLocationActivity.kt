@@ -9,19 +9,18 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.carrotmarket.R
 import com.example.carrotmarket.myInfo.adpater.AdrressListAdpater
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.round
 
 class SearchLocationActivity : AppCompatActivity() {
@@ -43,7 +42,7 @@ class SearchLocationActivity : AppCompatActivity() {
         val findLocateButton = findViewById<Button>(R.id.findLocateButton)
         
         // 어떤 액티비티가 불렀는지 기록
-        callingActivity = intent.getIntExtra("callingActivity",0)
+        callingActivity = intent.getIntExtra("callingActivity", 0)
 
         // 뒤로가기
         backButton.setOnClickListener {
@@ -60,7 +59,7 @@ class SearchLocationActivity : AppCompatActivity() {
     }
 
     // 리스트 버튼
-    private fun setAdapter(addressList : ArrayList<String>) {
+    private fun setAdapter(addressList: ArrayList<String>) {
         val addressAdapter = AdrressListAdpater(this, addressList)
         addressListView.adapter = addressAdapter
         addressListView.setOnItemClickListener { parent, view, position, id ->
@@ -72,7 +71,8 @@ class SearchLocationActivity : AppCompatActivity() {
                 // 회원가입할때
                 // var intent = Intent(this, MainActivity::class.java)
             }
-            intent.putExtra("location", addressAdapter.getItem(position).toString())
+            val fullAddress = addressAdapter.getItem(position).toString()
+            intent.putExtra("fullAddress", fullAddress)
             setResult(RESULT_OK, intent)
             finish()
         }
@@ -88,7 +88,7 @@ class SearchLocationActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         geocoder = Geocoder(this, Locale.KOREAN)
         fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
+            .addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     // 풀네임 주소, 동 주소 두개
                     val tempSet4 = getLocationInRange(3, location)
@@ -114,13 +114,13 @@ class SearchLocationActivity : AppCompatActivity() {
 
     private fun getLocationInRange(range: Int, location: Location): TreeSet<String> {
         val length = 0.006
-        val latitude: Double = round(location.latitude*1000) /1000
-        val longitude: Double = round(location.longitude*1000) /1000
+        val latitude: Double = round(location.latitude * 1000) /1000
+        val longitude: Double = round(location.longitude * 1000) /1000
         var address: TreeSet<String> = sortedSetOf()
         var list: List<Address>
         for(i in -range..range){
             for(k in -range..range){
-                list = geocoder.getFromLocation(latitude+i*length, longitude+k*length, 1)
+                list = geocoder.getFromLocation(latitude + i * length, longitude + k * length, 1)
                 if(list.isNotEmpty()
                     && list[0].adminArea != null
                     && list[0].locality != null
@@ -140,24 +140,24 @@ class SearchLocationActivity : AppCompatActivity() {
             // 권한 요구
             Log.d(TAG, "requestLoationPermission: 권한 요청")
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                PERMISSION_REQUEST_LOCATION)
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                    PERMISSION_REQUEST_LOCATION)
         } else {
             // 다시 묻지 않음을 누르고 거부하고 요청했을떄
             Log.d(TAG, "requestLoationPermission: 다시 묻지 않음을 누르고 거부 후, 권한 요청")
             AlertDialog.Builder(this)
                 .setTitle("알림")
                 .setMessage("GPS 권한이 거부되었다네. 사용을 원한다면 설정에서 해당 권한을 직접 허용하게.")
-                .setNeutralButton("설정", object: DialogInterface.OnClickListener {
-                    override fun onClick(dialogInterface: DialogInterface, i:Int) {
+                .setNeutralButton("설정", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialogInterface: DialogInterface, i: Int) {
                         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                         intent.setData(Uri.parse("package:" + getPackageName()))
                         startActivity(intent)
                     }
                 })
-                .setPositiveButton("확인", object: DialogInterface.OnClickListener {
-                    override fun onClick(dialogInterface: DialogInterface, i:Int) {
+                .setPositiveButton("확인", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialogInterface: DialogInterface, i: Int) {
                         dialogInterface.cancel()
                     }
                 })
