@@ -92,6 +92,7 @@ class SetMyLocationActivity : AppCompatActivity() {
             addLocationLayout[i]?.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
             locationTextView[i]?.setTextColor(ContextCompat.getColor(this, R.color.grey))
             addLocationButton[i]?.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            deleteLocationButton[i]?.setTextColor(ContextCompat.getColor(this, R.color.grey))
         }
 
     }
