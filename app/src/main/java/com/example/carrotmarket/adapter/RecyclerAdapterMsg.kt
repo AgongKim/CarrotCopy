@@ -1,6 +1,5 @@
 package com.example.carrotmarket.adapter
 
-import android.content.Context
 import android.graphics.Color
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -10,11 +9,8 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.Chat.MsgItems
-import com.example.carrotmarket.ItemsHome
-import com.example.carrotmarket.MyApplication
+import com.example.carrotmarket.helper.MyApplication
 import com.example.carrotmarket.R
-import com.example.carrotmarket.R.drawable.background_msg_me
-import kotlinx.android.synthetic.main.home_items.view.*
 import kotlinx.android.synthetic.main.msg_items.view.*
 
 class RecyclerAdapterMsg(private var items: List<MsgItems>,val myId:String ):

@@ -2,6 +2,7 @@ package com.example.carrotmarket
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -107,6 +108,8 @@ class MainActivity() : AppCompatActivity() {
         val alertDialog = AlertDialog.Builder(this)
                 .setPositiveButton("로그인/가입"){dialog, which ->  
                     //로그인창으로 넘기기
+                    val intent: Intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
                 }
                 .setNegativeButton("취소",null)
                 .create()
