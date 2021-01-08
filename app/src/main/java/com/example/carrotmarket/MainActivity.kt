@@ -14,9 +14,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_popup.view.*
 
 
+var position = 1
 
 class MainActivity() : AppCompatActivity() {
-    var position = 1
+
     var CHK_LOGIN =false
 
     override fun onCreate(savedInstanceState: Bundle?) {

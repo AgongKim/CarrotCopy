@@ -17,8 +17,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.carrotmarket.R
-import com.example.carrotmarket.myInfo.adpater.AdrressListAdpater
-import com.google.android.gms.location.FusedLocationProviderClient
+import com.example.carrotmarket.myInfo.adpater.AddressListAdapter
 import com.google.android.gms.location.LocationServices
 import java.util.*
 import kotlin.math.round
@@ -26,8 +25,7 @@ import kotlin.math.round
 class SearchLocationActivity : AppCompatActivity() {
     private val TAG: String = "[SearchLocationActivity]"
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var geocoder: Geocoder
+
     private lateinit var addressListView: ListView
 
     private var callingActivity: Int = 0
@@ -60,7 +58,7 @@ class SearchLocationActivity : AppCompatActivity() {
 
     // 리스트 버튼
     private fun setAdapter(addressList: ArrayList<String>) {
-        val addressAdapter = AdrressListAdpater(this, addressList)
+        val addressAdapter = AddressListAdapter(this, addressList)
         addressListView.adapter = addressAdapter
         addressListView.setOnItemClickListener { parent, view, position, id ->
             // 리스트에서 주소 클릭했을때 액티비티로 돌아가면서 주소 세팅
@@ -85,8 +83,8 @@ class SearchLocationActivity : AppCompatActivity() {
             return
         }
         Log.d(TAG, "getLocation: 실행")
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        geocoder = Geocoder(this, Locale.KOREAN)
+
+        var fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location != null) {
@@ -116,6 +114,7 @@ class SearchLocationActivity : AppCompatActivity() {
         val length = 0.006
         val latitude: Double = round(location.latitude * 1000) /1000
         val longitude: Double = round(location.longitude * 1000) /1000
+        var geocoder = Geocoder(this, Locale.KOREAN)
         var address: TreeSet<String> = sortedSetOf()
         var list: List<Address>
         for(i in -range..range){
