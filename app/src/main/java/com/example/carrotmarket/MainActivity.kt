@@ -12,6 +12,8 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import com.example.carrotmarket.adapter.RecyclerAdapterHome
+import com.example.carrotmarket.helper.MyApplication
+import com.example.carrotmarket.helper.MySharedPreferences
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_popup.view.*
 
@@ -25,15 +27,7 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //자동로그인 & 로그인된 회원정보 공유용 쉐어드 프리퍼런스
-        val member:SharedPreferences = getSharedPreferences("member",Activity.MODE_PRIVATE)
-        CHK_LOGIN = member.getBoolean("CHK_LOGIN",false)
 
-        //로그인 한적이있으면 멤버정보 저장
-        if(CHK_LOGIN){
-            //여기에 맴버정보 저장
-
-       }
 
         setFrag()
 
@@ -50,34 +44,22 @@ class MainActivity() : AppCompatActivity() {
                 showLoginPopup()
             }
         }
-        btnMypage.run {
-            CHK_LOGIN = member.getBoolean("CHK_LOGIN",false)
-
-            //로그인 한적이있으면 멤버정보 저장
-            if(CHK_LOGIN){
-                //여기에 맴버정보 저장
-
-           }
-
+        btnMypage.setOnClickListener {
+            position = 4
             setFrag()
+        }
 
-            btnHome.setOnClickListener {
-                position = 1
-                setFrag()
-            }
-            btnChat.setOnClickListener {
-                if(CHK_LOGIN==true){
-                    position = 3
-                    setFrag()
-                }else{
-                    //로그인 안되어있으면 채팅 x 창띄우기
-                    showLoginPopup()
-                }
-            }
-            btnMypage.setOnClickListener {
-                position = 4
-                setFrag()
-            }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //자동로그인 & 로그인된 회원정보 공유용 쉐어드 프리퍼런스\
+        CHK_LOGIN = MyApplication.prefs.login
+
+        //로그인 한적이있으면 멤버정보 저장
+        if(CHK_LOGIN){
+            //여기에 맴버정보 저장
+
         }
     }
 
