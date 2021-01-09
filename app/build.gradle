@@ -60,6 +60,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     // Declare the dependency for the Firebase Authentication library
     implementation 'com.google.firebase:firebase-auth-ktx'
+    //Async 방식 http 메소드
+    implementation 'com.loopj.android:android-async-http:1.4.9'
 
     implementation 'androidx.activity:activity-ktx:1.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
