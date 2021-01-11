@@ -88,24 +88,38 @@ class SearchLocationActivity : AppCompatActivity() {
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location != null) {
-                    // 풀네임 주소, 동 주소 두개
-                    val tempSet4 = getLocationInRange(3, location)
-                    val tempSet3 = getLocationInRange(2, location)
-                    val tempSet2 = getLocationInRange(1, location)
-                    val tempSet1 = getLocationInRange(0, location)
+                    var geocoder = Geocoder(this, Locale.KOREAN)
+                    var list: List<Address> = geocoder.getFromLocation(37.382698999999995, 127.11890570000001, 20)
+                    Log.e(TAG, "list 내용: " + list.toString())
+                    Log.e(TAG, "list.size: " + list.size)
 
-                    tempSet4.removeAll(tempSet3)
-                    tempSet3.removeAll(tempSet2)
-                    tempSet2.removeAll(tempSet1)
 
-                    val addressList: Array<List<String>?> = arrayOfNulls<List<String>>(4)
-
-                    addressList[0] = tempSet1.toList()
-                    addressList[1] = addressList[0]!! + tempSet2
-                    addressList[2] = addressList[1]!! + tempSet3
-                    addressList[3] = addressList[2]!! + tempSet4
-
-                    setAdapter(addressList[3] as ArrayList<String>)
+                    var list2: List<Address> = geocoder.getFromLocationName("분당구",
+                            10,
+                            1.1,
+                            0.1,
+                            0.1,
+                            0.1)
+                    Log.e(TAG, "list 내용: " + list2.toString())
+                    Log.e(TAG, "list.size: " + list2.size)
+//                    // 풀네임 주소, 동 주소 두개
+//                    val tempSet4 = getLocationInRange(3, location)
+//                    val tempSet3 = getLocationInRange(2, location)
+//                    val tempSet2 = getLocationInRange(1, location)
+//                    val tempSet1 = getLocationInRange(0, location)
+//
+//                    tempSet4.removeAll(tempSet3)
+//                    tempSet3.removeAll(tempSet2)
+//                    tempSet2.removeAll(tempSet1)
+//
+//                    val addressList: Array<List<String>?> = arrayOfNulls<List<String>>(4)
+//
+//                    addressList[0] = tempSet1.toList()
+//                    addressList[1] = addressList[0]!! + tempSet2
+//                    addressList[2] = addressList[1]!! + tempSet3
+//                    addressList[3] = addressList[2]!! + tempSet4
+//
+//                    setAdapter(addressList[3] as ArrayList<String>)
                 }
             }
     }

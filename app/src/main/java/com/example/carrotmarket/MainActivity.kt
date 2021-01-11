@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_popup.view.*
 
 
-var position = 1
+var position = 4
 
 class MainActivity() : AppCompatActivity() {
 
