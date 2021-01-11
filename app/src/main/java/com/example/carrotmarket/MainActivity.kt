@@ -55,7 +55,8 @@ class MainActivity() : AppCompatActivity() {
         super.onResume()
         //자동로그인 & 로그인된 회원정보 공유용 쉐어드 프리퍼런스\
         CHK_LOGIN = MyApplication.prefs.login
-
+        position =1
+        setFrag()
         //로그인 한적이있으면 멤버정보 저장
         if(CHK_LOGIN){
             //여기에 맴버정보 저장

@@ -47,19 +47,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    //파이어베이스용
+
+    //[start_파이어베이스]
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:26.1.1')
-
     // When using the BoM, you don't specify versions in Firebase library dependencies
-
     // Declare the dependency for the Realtime Database library
     implementation 'com.google.firebase:firebase-database-ktx'
     // Declare the dependency for the Firebase Authentication library
     implementation 'com.google.firebase:firebase-auth-ktx'
+    // Declare the dependency for the Cloud Storage library
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    //[end_파이어베이스]
+
     //Async 방식 http 메소드
     implementation 'com.loopj.android:android-async-http:1.4.9'
 

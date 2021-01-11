@@ -24,10 +24,6 @@ class MyInfoFragment() : Fragment() {
     var CHK_LOGIN = false
     lateinit var rootView :View
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         rootView= inflater.inflate(R.layout.fragment_my_info, container, false)
         return rootView
@@ -66,6 +62,7 @@ class MyInfoFragment() : Fragment() {
         button4.setOnClickListener{
             MyApplication.prefs.login = false
             val mainActivity = activity as MainActivity
+            mainActivity.CHK_LOGIN =false
             mainActivity.position=1
             mainActivity.setFrag()
         }

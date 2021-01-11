@@ -1,6 +1,7 @@
 package com.example.carrotmarket
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -99,7 +100,8 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener {
                         this.finish()
                     }else {
                         //회원가입화면으로 이동
-
+                        val intent: Intent = Intent(MyApplication.applicationContext(), JoinActivity::class.java)
+                        startActivity(intent)
                     }
                 }else{
                     Toast.makeText(this,"인증번호 오류!",Toast.LENGTH_SHORT).show()

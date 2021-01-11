@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CarrotMarket">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
